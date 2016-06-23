@@ -13,3 +13,6 @@ https://github.com/Supervisor/supervisor/tree/master/supervisor/skel
 restart supervisord if fail -->  rm /tmp/supervisor.sock
 
 Parser Python : http://pyyaml.org/wiki/PyYAML
+
+Appel Sys python:
+https://openclassrooms.com/courses/apprenez-a-programmer-en-python/un-peu-de-programmation-systeme
