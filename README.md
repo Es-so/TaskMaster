@@ -1,6 +1,6 @@
 # TaskMaster
 
-supervisor install : 
+supervisor install :
 https://github.com/kube/42homebrewfix/blob/master/install.sh <-- install brew;
 
 brew install python;
@@ -12,4 +12,5 @@ https://github.com/Supervisor/supervisor/tree/master/supervisor/skel
 
 restart supervisord if fail -->  rm /tmp/supervisor.sock
 
-Parser Python : http://pyyaml.org/wiki/PyYAML
+subprocess: https://docs.python.org/2/library/subprocess.html
+
