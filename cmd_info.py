@@ -1,4 +1,3 @@
-
 from cmd_data import cmd_data
 import yaml
 
