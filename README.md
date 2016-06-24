@@ -12,12 +12,11 @@ https://github.com/Supervisor/supervisor/tree/master/supervisor/skel
 
 restart supervisord if fail -->  rm /tmp/supervisor.sock
 
-<<<<<<< HEAD
-subprocess: https://docs.python.org/2/library/subprocess.html
+subprocess: https://docs.python.org/2/library/subprocess.html; https://openclassrooms.com/forum/sujet/subprocess-question-sur-le-module
 
-=======
 Parser Python : http://pyyaml.org/wiki/PyYAML
 
 Appel Sys python:
 https://openclassrooms.com/courses/apprenez-a-programmer-en-python/un-peu-de-programmation-systeme
->>>>>>> 77a9e25d3b7a4a8d5b61be9bc8a0a5c60ed92ba5
+
+split quote:
