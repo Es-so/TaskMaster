@@ -26,7 +26,8 @@ class Afficheur(Thread):
 		return
 
 	def run(self):
-		logging.debug('running with %s and %s', self.args, self.kwargs)
+		print ("A")
+		# logging.debug('running with %d', self)
 		return
 
     # # def __init__(self):
@@ -44,8 +45,8 @@ class Afficheur(Thread):
 
 def start_process(arg):
 	i = 0
-	thread_1 = Afficheur(int(arg))
 	print("START PROCESS" + arg)
+	thread_1 = Afficheur(int(arg))
 	thread_1.start()
 	thread_1.join()
 	# while i < int(arg):
