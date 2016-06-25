@@ -17,7 +17,13 @@ class cmd_info:
 		for k, v in cmd.iteritems():
 			cmd = cmd_data(k, v)
 			self.cmd[k] = cmd
-			print(self.cmd[k])
+	def	start(self, line):
+		for k, v in self.cmd.iteritems():
+			cmd = self.cmd[k]
+			if (line and cmd.id == line):
+				cmd.start()
+				break
+
 	def	autostart(self):
 		for k, v in self.cmd.iteritems():
 			cmd = self.cmd[k]
@@ -28,5 +34,12 @@ class cmd_info:
 		for k, v in self.cmd.iteritems():
 			cmd = self.cmd[k]
 			cmd.show_status()
+
+	def	stop(self, line):
+		for k, v in self.cmd.iteritems():
+			cmd = self.cmd[k]
+			if (line and cmd.id == line):
+				cmd.stop()
+				break
 
 

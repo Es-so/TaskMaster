@@ -1,0 +1,49 @@
+programs:
+    cat:
+      cmd: "/bin/cat"
+      numprocs: 1
+      umask: 022
+      workingdir: "/tmp"
+      autostart: false
+      autorestart: "unexpected"
+      exitcodes:
+        - 0
+        - 2
+      startretries: 3
+      starttime: 5
+      stopsignal: "TERM"
+      stoptime: 10
+      stdout: "/tmp/taskcat.stdout"
+      stderr: "/tmp/taskcat.stderr"
+      env:
+        STARTED_BY: "taskmaster"
+        ANSWER: 42
+    ls:
+      cmd: "ls -R /"
+      numprocs: 1
+      umask: 077
+      workingdir: "/tmp"
+      autostart: false
+      autorestart: "unexpected"
+      exitcodes: 0
+      startretries: 3
+      starttime: 5
+      stopsignal: "USR1"
+      stoptime: 10
+      stdout: "/tmp/taskls.stdout"
+      stderr: "/tmp/taskls.stderr"
+
+    wc:
+      cmd: "/usr/bin/wc"
+      numprocs: 1
+      umask: 077
+      workingdir: "/tmp"
+      autostart: false
+      autorestart: "unexpected"
+      exitcodes: 0
+      startretries: 3
+      starttime: 5
+      stopsignal: "USR1"
+      stoptime: 10
+      stdout: "/tmp/taskwc.stdout"
+      stderr: "/tmp/taskwc.stderr"
