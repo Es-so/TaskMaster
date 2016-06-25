@@ -15,8 +15,8 @@ class cmd_info:
 		cmd = data.get("programs")
 		self.cmd = {}
 		for k, v in cmd.iteritems():
-			cmd = cmd_data(k, v)
-			self.cmd[k] = cmd
+			cmd_class = cmd_data(k, v)
+			self.cmd[k] = cmd_class
 	def	start(self, line):
 		for k, v in self.cmd.iteritems():
 			cmd = self.cmd[k]
@@ -29,6 +29,12 @@ class cmd_info:
 			cmd = self.cmd[k]
 			if (cmd.autostart):
 				cmd.start()
+
+	def	restart(self, line):
+		for k, v in self.cmd.iteritems():
+			cmd = self.cmd[k]
+			if (line and cmd.id == line):
+				cmd.restart()
 
 	def	status(self):
 		for k, v in self.cmd.iteritems():

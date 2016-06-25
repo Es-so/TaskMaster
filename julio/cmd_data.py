@@ -19,38 +19,42 @@ class cmd_data:
 		self.process = None
 
 	def start(self):
-		print("start " + self.id)
 		try:
 			cmd_split = shlex.split(self.path)
 			stdout_path = open(self.stdout, "a")
 			stderr_path = open(self.stderr, "a")
-			proc = subprocess.Popen(cmd_split,
-					stdin = subprocess.PIPE,
-					stdout = stdout_path,
-					stderr = stderr_path,
-					env = os.environ
-					)
+			proc = subprocess.Popen(
+				cmd_split,
+				stdin = subprocess.PIPE,
+				stdout = stdout_path,
+				stderr = stderr_path,
+				env = os.environ
+			)
 			self.status = "RUNNING"
-			self.pid = proc.pid
 			self.process = proc
+			self.show_status()
 		except Exception, e:
 			print("error execution -> " + self.id)
 
-	def restart(self):
-		print("restart " + self.id)
-
 	def stop(self):
-		print("kill " + self.id)
 		if (self.process):
 			self.process.terminate()
 			self.status = "WAITING"
 			self.pid = 0
 			self.time = 0
 			self.process = None
+			self.show_status()
 		else:
-			print "not start"
+			print "process unavailable"
 
 	def show_status(self):
-		print(self.id + "\t\t\t\t" + self.status + "\t  pid " + str(self.pid) + "\t  uptime " + str(self.time))
+		if (self.process):
+			print(self.id + "\t\t\t\t" + self.status + "\t  pid " + str(self.process.pid) + "\t  uptime " + str(self.time))
+		else:
+			print(self.id + "\t\t\t\t" + self.status + "\t  pid " + '0' + "\t  uptime " + str(self.time))
+
+	def restart(self):
+		self.stop()
+		self.start()
 
 

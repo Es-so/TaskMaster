@@ -10,15 +10,13 @@ class HelloWorld(cmd.Cmd):
     	task.status()
 
     def do_start(self, line):
-    	print("start: " + line)
     	task.start(line)
 
     def do_stop(self, line):
-    	print("stop: " + line)
     	task.stop(line)
 
     def do_restart(self, line):
-    	print("restart: " + line)
+    	task.restart(line)
 
     def do_reload(self, line):
     	print("reload: " + line)
