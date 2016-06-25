@@ -1,6 +1,61 @@
 #!/usr/bin/env python
 
 import cmd
+import random
+import sys
+import time
+import random
+import sys
+from threading import Thread, RLock
+import threading
+import logging
+import time
+
+verrou = RLock()
+
+
+logging.basicConfig(level=logging.DEBUG,
+                    format='(%(threadName)-10s) %(message)s',
+                    )
+
+# class MyThreadWithArgs(threading.Thread):_____________________________________
+
+class Afficheur(Thread):
+	def __init__(self):
+		threading.Thread.__init__(self)
+		return
+
+	def run(self):
+		logging.debug('running with %s and %s', self.args, self.kwargs)
+		return
+
+    # # def __init__(self):
+    #     # Thread.__init__(self)
+    #     # self.mot = mot
+
+    # def run(self):
+    #     i = 0
+    #     while i < self:
+    #     	print ("A")
+    #     	i += 1
+#_______________________________________________________________________________
+# thread_2 = Afficheur("TORTUE")
+
+
+def start_process(arg):
+	i = 0
+	thread_1 = Afficheur(int(arg))
+	print("START PROCESS" + arg)
+	thread_1.start()
+	thread_1.join()
+	# while i < int(arg):
+	# 	time.sleep(1)
+	# 	sys.stdout.write(str(i))
+	# 	sys.stdout.flush()
+	# 	attente = 1
+	# 	# attente += random.randint(1, 60) / 100
+	# 	i += 1
+
 
 class HelloWorld(cmd.Cmd):
     """Simple command processor example."""
@@ -28,6 +83,8 @@ class HelloWorld(cmd.Cmd):
         return True
 
 if __name__ == '__main__':
+
+
 	try:
 		str = HelloWorld().cmdloop()
 		print ("Goodbye")
