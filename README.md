@@ -14,6 +14,7 @@ restart supervisord if fail -->  rm /tmp/supervisor.sock
 
 subprocess: https://docs.python.org/2/library/subprocess.html; https://openclassrooms.com/forum/sujet/subprocess-question-sur-le-module
 http://sharats.me/the-ever-useful-and-neat-subprocess-module.html#reading-error-stream
+http://blog.endpoint.com/2015/01/getting-realtime-output-using-python.html
 
 Parser Python : http://pyyaml.org/wiki/PyYAML
 
