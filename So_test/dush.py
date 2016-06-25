@@ -2,21 +2,15 @@
 
 import cmd
 
-def fix_statut(arg):
-	x = int(arg)
-	print("arg = "* x)
-
-
-
 class HelloWorld(cmd.Cmd):
     """Simple command processor example."""
 
     def do_status(self, line):
     	print("statut: \n")
-    	fix_statut(line)
 
     def do_start(self, line):
-    	print("start: " + line)
+    	print("start: \n" + line)
+    	start_process(line)
 
     def do_stop(self, line):
     	print("stop: " + line)
@@ -39,6 +33,5 @@ if __name__ == '__main__':
 		print ("Goodbye")
 	except Exception, e:
 		print ("unknow cmd")
-
-
+		str = HelloWorld().cmdloop()
 
