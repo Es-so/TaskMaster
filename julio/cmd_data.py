@@ -31,6 +31,7 @@ class cmd_data:
 				stderr = stderr_path,
 				env = os.environ
 			)
+			proc.poll()
 			self.status = "RUNNING"
 			self.process = proc
 			self.show_status()
