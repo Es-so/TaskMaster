@@ -13,7 +13,10 @@ class HelloWorld(cmd.Cmd):
     	task.start(line)
 
     def do_stop(self, line):
-    	task.stop(line)
+    	if (line != ""):
+    		task.stop(line)
+    	else:
+    		print("task: need PID to stop")
 
     def do_restart(self, line):
     	task.restart(line)
@@ -27,10 +30,9 @@ class HelloWorld(cmd.Cmd):
     def do_quit(self, line):
         return True
 
+
 if __name__ == "__main__":
 	task = cmd_info()
 	task.status()
 	task.autostart()
 	HelloWorld().cmdloop()
-
-

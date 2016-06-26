@@ -13,6 +13,7 @@ class cmd_data:
 		self.stderr = params["stderr"]
 		self.autostart = params["autostart"]
 		self.autorestart = params["autorestart"]
+		self.numprocs = params["numprocs"]
 		self.status = "WAITING"
 		self.pid = 0
 		self.time = 0
@@ -37,15 +38,12 @@ class cmd_data:
 			print("error execution -> " + self.id)
 
 	def stop(self):
-		if (self.process):
-			self.process.terminate()
-			self.status = "WAITING"
-			self.pid = 0
-			self.time = 0
-			self.process = None
-			self.show_status()
-		else:
-			print "process unavailable"
+		self.process.terminate()
+		self.status = "WAITING"
+		self.pid = 0
+		self.time = 0
+		self.process = None
+		self.show_status()
 
 	def show_status(self):
 		if (self.process):
