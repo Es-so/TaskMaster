@@ -1,20 +1,33 @@
 import cmd
-import signal, os
+import signal
 from cmd_info import cmd_info
 
 task = None
 
-def handler(signum, frame):
+def sig_int(signal, frame):
+	print "CTRL_C"
+
+def sig_alarm(signum, frame):
 	for k, v in task.cmd.iteritems():
 		cmd = task.cmd[k]
-		if (cmd.process and cmd.process.poll() != None):
-			print cmd.process.returncode
-		else:
-			print "not launch"
+		if (cmd.process and cmd.process.poll()):
+			ret = cmd.process.returncode
+			if (ret < 0):
+				ret *= -1
+			for k, v in signal.__dict__.iteritems():
+				if k.startswith('SIG') and not k.startswith('SIG_'):
+					if (v == ret):
+						cmd.finish(k, v);
 	signal.alarm(1)
 
 class HelloWorld(cmd.Cmd):
     """Simple command processor example."""
+
+    prompt = 'task MASTER: '
+
+    def emptyline(self):
+    	pass
+
     def do_status(self, line):
     	task.status()
 
@@ -48,8 +61,9 @@ class HelloWorld(cmd.Cmd):
 
 
 if __name__ == "__main__":
-	signal.signal(signal.SIGALRM, handler)
-	##signal.alarm(1)
+	signal.signal(signal.SIGALRM, sig_alarm)
+	signal.signal(signal.SIGINT, sig_int)
+	signal.alarm(1)
 	task = cmd_info()
 	task.status()
 	task.autostart()

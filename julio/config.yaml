@@ -15,17 +15,17 @@ programs:
       stoptime: 10
       stdout: "/tmp/taskcat.stdout"
       stderr: "/tmp/taskcat.stderr"
-      env:
-        STARTED_BY: "taskmaster"
-        ANSWER: 42
+
     ls:
-      cmd: "ls -R /"
-      numprocs: 1
+      cmd: "ls -R /Applications"
+      numprocs: 4
       umask: 077
       workingdir: "/tmp"
       autostart: true
       autorestart: "unexpected"
-      exitcodes: 0
+      exitcodes:
+        - 0
+        - 2
       startretries: 3
       starttime: 5
       stopsignal: "USR1"
@@ -40,7 +40,9 @@ programs:
       workingdir: "/tmp"
       autostart: false
       autorestart: "unexpected"
-      exitcodes: 0
+      exitcodes:
+        - 0
+        - 15
       startretries: 3
       starttime: 5
       stopsignal: "USR1"
@@ -55,7 +57,9 @@ programs:
       workingdir: "/tmp"
       autostart: false
       autorestart: "unexpected"
-      exitcodes: 0
+      exitcodes:
+        - 0
+        - 2
       startretries: 3
       starttime: 5
       stopsignal: "USR1"

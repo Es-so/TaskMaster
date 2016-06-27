@@ -21,10 +21,10 @@ def check_pid(cmd, line):
 class cmd_info:
 
 	def __init__(self):
-		i = 1
 		data = load_conf("config.yaml")
 		cmd = data.get("programs")
 		self.cmd = {}
+		i = 1
 		for k, v in cmd.iteritems():
 			cmd_class = cmd_data(k, v)
 			self.cmd[k] = cmd_class

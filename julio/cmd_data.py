@@ -13,11 +13,11 @@ class cmd_data:
 		self.stderr = params["stderr"]
 		self.autostart = params["autostart"]
 		self.autorestart = params["autorestart"]
+		self.exit = params["exitcodes"]
 		self.numprocs = params["numprocs"]
 		self.status = "WAITING"
-		self.pid = 0
-		self.time = 0
 		self.process = None
+		self.time = 0
 
 	def start(self):
 		try:
@@ -31,7 +31,6 @@ class cmd_data:
 				stderr = stderr_path,
 				env = os.environ
 			)
-			proc.poll()
 			self.status = "RUNNING"
 			self.process = proc
 			self.show_status()
@@ -40,20 +39,24 @@ class cmd_data:
 
 	def stop(self):
 		self.process.terminate()
-		self.status = "WAITING"
-		self.pid = 0
-		self.time = 0
-		self.process = None
-		self.show_status()
 
 	def show_status(self):
 		if (self.process):
-			print(self.id + "\t\t\t\t" + self.status + "\t  pid " + str(self.process.pid) + "\t  uptime " + str(self.time))
+			print('{0:20}{1:15}{2:15}{3:15}{4:15}'.format(self.id, self.status, "  pid ", str(self.process.pid), "  uptime ", str(self.time)))
 		else:
-			print(self.id + "\t\t\t\t" + self.status + "\t  pid " + '0' + "\t  uptime " + str(self.time))
+			print('{0:20}{1:15}{2:15}{3:15}{4:15}'.format(self.id, self.status, "  pid ", '0', "  uptime ", str(self.time)))
 
 	def restart(self):
 		self.stop()
 		self.start()
+
+	def finish(self, signal, signum):
+		print ("\n" + self.id + ": processus done return_code : " + signal)
+		self.process = None
+		self.status = "WAITING"
+		for exit in self.exit:
+			if (exit == signum):
+				self.start()
+
 
 
