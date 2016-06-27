@@ -5,7 +5,6 @@ def load_conf(file):
 	try:
 		fd = open(file, "r")
 		data = yaml.load(fd)
-		fd.close()
 		return data
 	except Exception, e:
 		print("error config -> " + file)
