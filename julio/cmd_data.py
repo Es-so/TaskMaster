@@ -48,9 +48,9 @@ class cmd_data:
 
 	def show_status(self):
 		if (self.process):
-			print(self.id + "\t\t\t\t" + self.status + "\t  pid " + str(self.process.pid) + "\t  uptime " + str(self.time))
+			print('{0:20}{1:15}{2:15}{3:15}{4:15}'.format(self.id, self.status, "  pid ", str(self.process.pid), "  uptime ", str(self.time)))
 		else:
-			print(self.id + "\t\t\t\t" + self.status + "\t  pid " + '0' + "\t  uptime " + str(self.time))
+			print('{0:20}{1:15}{2:15}{3:15}{4:15}'.format(self.id, self.status, "  pid ", '0', "  uptime ", str(self.time)))
 
 	def restart(self):
 		self.stop()

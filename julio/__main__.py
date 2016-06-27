@@ -14,7 +14,9 @@ def handler(signum, frame):
 	signal.alarm(1)
 
 class HelloWorld(cmd.Cmd):
-    """Simple command processor example."""
+    prompt = "(PSG MASTER) "
+    def emptyline(self):
+        pass
     def do_status(self, line):
     	task.status()
 
