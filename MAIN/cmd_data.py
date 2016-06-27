@@ -1,7 +1,7 @@
 import os
 import shlex
 import subprocess
-
+import pyautogui
 #http://stackoverflow.com/questions/2846653/how-to-use-threading-in-python
 
 class cmd_data:
@@ -57,6 +57,4 @@ class cmd_data:
 		for exit in self.exit:
 			if (exit == signum):
 				self.start()
-
-
-
+		pyautogui.press('enter')

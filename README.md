@@ -21,3 +21,7 @@ https://openclassrooms.com/courses/apprenez-a-programmer-en-python/un-peu-de-pro
 split quote: http://stackoverflow.com/questions/6868382/python-shlex-split-ignore-single-quotes
 
 threading: http://stackoverflow.com/questions/2846653/how-to-use-threading-in-python
+
+pip install pyobjc-framework-Quartz
+
+pip install pyautogui
