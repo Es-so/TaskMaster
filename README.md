@@ -24,4 +24,6 @@ threading: http://stackoverflow.com/questions/2846653/how-to-use-threading-in-py
 
 pip install pyobjc-framework-Quartz
 
+copy module :https://pymotw.com/2/copy/
+
 pip install pyautogui
