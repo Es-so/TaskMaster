@@ -11,9 +11,11 @@
 # **************************************************************************** #
 import signal
 import cmd
+import task_lib
 from task_lib import task
 from task_lib import close_fd
 from task_lib import log
+from array import array
 
 def opening():
     try:
@@ -27,6 +29,9 @@ def opening():
 
 class keyboard(cmd.Cmd):
     prompt = '\033[31m' + '\033[1m' + '(Deamon_Master): ' + '\033[39m' + '\033[0m'
+    startArray = [];
+    for k, v in task.cmd.iteritems():
+        startArray.append(str(v.id));
 
     def emptyline(self):
         pass
@@ -37,8 +42,20 @@ class keyboard(cmd.Cmd):
     def do_status(self, line):
         task.status(line)
 
+    def complete_status(self, text, line, begidx, endidx):
+        if text:
+            return [f for f in self.startArray if f.startswith(text)]
+        else:
+            return self.startArray
+
     def do_start(self, line):
         task.start(line)
+    # task_lib.complete_start(self, text, line, begidx, endidx, startArray);
+    def complete_start(self, text, line, begidx, endidx):
+        if text:
+            return [f for f in self.startArray if f.startswith(text)]
+        else:
+            return self.startArray
 
     def do_stop(self, line):
         if (line != ""):
@@ -46,11 +63,29 @@ class keyboard(cmd.Cmd):
         else:
             print("task: need name to stop")
 
+    def complete_stop(self, text, line, begidx, endidx):
+        if text:
+            return [f for f in self.startArray if f.startswith(text)]
+        else:
+            return self.startArray
+
     def do_restart(self, line):
         task.restart(line)
 
+    def complete_restart(self, text, line, begidx, endidx):
+        if text:
+            return [f for f in self.startArray if f.startswith(text)]
+        else:
+            return self.startArray
+
     def do_reload(self, line):
         task.reload()
+
+    def complete_reload(self, text, line, begidx, endidx):
+        if text:
+            return [f for f in self.startArray if f.startswith(text)]
+        else:
+            return self.startArray
 
     def do_only(self, line):
         task.only(line)
@@ -59,6 +94,14 @@ class keyboard(cmd.Cmd):
         print ("cmd: <info/status/start/stop/restart> [all/name] || <reload/quit> ")
 
     def do_quit(self, line):
+        signal.alarm(0)
+        close_fd(task.cmd)
+        task.stop("all")
+        print ("see you soon on 'Deamon_Master' .\nclosing ...")
+        log.info("TASK_MASTER CLOSED!")
+        return True
+
+    def do_exit (self, line):
         signal.alarm(0)
         close_fd(task.cmd)
         task.stop("all")
