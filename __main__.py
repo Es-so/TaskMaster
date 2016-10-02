@@ -3,12 +3,13 @@
 #                                                         :::      ::::::::    #
 #    __main__.py                                        :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jmontija <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: skhatir  <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2016/06/30 10:04:15 by jmontija          #+#    #+#              #
-#    Updated: 2016/06/30 10:04:20 by jmontija         ###   ########.fr        #
+#    Created: 2016/06/30 10:04:15 by skhatir           #+#    #+#              #
+#    Updated: 2016/06/30 10:04:20 by skhatir          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 import signal
 import cmd
 import os
